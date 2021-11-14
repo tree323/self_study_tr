@@ -10,7 +10,9 @@ public class Code_04_TopologySort {
 
 	// directed graph and no loop
 	public static List<Node> sortedTopology(Graph graph) {
+		// 入度
 		HashMap<Node, Integer> inMap = new HashMap<>();
+		// 入度为0
 		Queue<Node> zeroInQueue = new LinkedList<>();
 		for (Node node : graph.nodes.values()) {
 			inMap.put(node, node.in);
@@ -20,10 +22,13 @@ public class Code_04_TopologySort {
 		}
 		List<Node> result = new ArrayList<>();
 		while (!zeroInQueue.isEmpty()) {
+			// 从入度为0的节点中选择一个开始bfs
 			Node cur = zeroInQueue.poll();
 			result.add(cur);
 			for (Node next : cur.nexts) {
+				// 删除以这个点为起点的边
 				inMap.put(next, inMap.get(next) - 1);
+				// 更新入度为0的节点
 				if (inMap.get(next) == 0) {
 					zeroInQueue.add(next);
 				}
