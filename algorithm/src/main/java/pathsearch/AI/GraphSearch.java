@@ -101,6 +101,7 @@ public class GraphSearch {
 				node.calculateHeuristic(goalNode);
 				printIterationInfo(queue.size(), node.getId(), node.getX(), node.getY(), node.getHeur());
 			}
+			// 到达目标节点
 			if (node.getId() == goalNode.getId()) {
 				return;
 			}
